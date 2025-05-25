@@ -19,6 +19,8 @@ This application basic cyber security tools. Domain Query, IP Query, DNS Query, 
 # How to do use?
 First of all, when you start the application via terminal, the commands come. All the commands are given in the table below, all the features in the table are written under subheadings.
 
+<br>
+
 <div align="center">
  <img width="750" src="https://github.com/TheKeops/Luma/blob/main/img/img-1.PNG" alt="luma" />
 </div>

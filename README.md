@@ -22,7 +22,7 @@ First of all, when you start the application via terminal, the commands come. Al
 <br>
 
 <div align="center">
- <img width="750" src="https://github.com/TheKeops/Luma/blob/main/img/img-1.PNG" alt="luma" />
+ <img width="1050" src="https://github.com/TheKeops/Luma/blob/main/img/img-1.PNG" alt="luma-img-1" />
 </div>
 
 | COMMAND        | FUNCTION         |

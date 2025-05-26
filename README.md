@@ -45,7 +45,7 @@ When you open the query function, you will see 3 options.
 - IP Query
 - DNS Query
   
-If you select `1`, which is Domain Query, from these query fields, it will give you the domain information of the site you entered. `2`, which is IP Query, will give you the IP address of the Domain you entered. `3` DNS Query is under construction :D
+If you select `1`, which is Domain Query, from these query fields, it will give you the domain information of the site you entered. `2`, which is IP Query, will give you the IP address of the Domain you entered. `3` DNS query, enter a domain in the input value and it will give you information as a result. You can also look at the results in the Result section.
 
 <br>
 

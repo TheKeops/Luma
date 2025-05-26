@@ -3,7 +3,7 @@
 
 * This app is under development. Please report any bugs or suggestions!
 
-Version : v1.1-demo
+Version : v1.2-demo
 License : MIT License
 Author : TheKeops
 
@@ -271,7 +271,7 @@ def main():
             print(f"{Fore.CYAN}[LUMA ABOUT]")
             print("---------------------------")
             print("- Luma application is an open source simple cybersecurity application. The application currently runs on Windows machines and is under development. This version is a terminal version, versions with interfaces may be released in future versions.")
-            print("VERSION   : v1.1-demo")
+            print("VERSION   : v1.2-demo")
             print("LICENSE   : MIT LICENSE")
             print("DEVELOPER : TheKeops")
             input()

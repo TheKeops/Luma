@@ -9,7 +9,7 @@ This application basic cyber security tools. Domain Query, IP Query, DNS Query, 
 
 > [!WARNING]
 > This application not hack tools. We are not responsible if used!
-> 
+
 > [!WARNING]
 > This application only works on Windows operating system! No version has been released specifically for other systems.
 

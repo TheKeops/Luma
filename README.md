@@ -22,6 +22,8 @@ First of all, when you start the application via terminal, the commands come. Al
  <img width="500" src="https://github.com/TheKeops/Luma/blob/main/img/img-1.PNG" alt="luma-img-1" />
 </div>
 
+<br>
+
 | COMMAND        | FUNCTION         |
 | ------------- |:-------------:|
 | Port Scan     | Port scaning. |

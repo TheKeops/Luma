@@ -3,7 +3,7 @@
 </div>
 
 # What is Luma?
-This application basic cyber security tools. Domain Query, IP Query, DNS Query, Port Scanner, MyIP, Password Creator it supports features such as.
+This application basic cyber security tools. Domain Query, IP Query, DNS Query, Port Scanner, MyIP, Password Creator it supports features such as. Please report an error or a suggestion.
 
 <br>
 

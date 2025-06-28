@@ -7,7 +7,7 @@ This application basic cyber security tools. Domain Query, IP Query, DNS Query, 
 
 <br>
 
-> [!INFO]
+> [!NOTE]
 > This application creates the necessary files if they are not available. Since it is developed with the Python programming language, it may try to download the Python libraries required for the application itself, and at the beginning it asks for permission to download them for double-checking purposes. (This occurs at every startup.)
 
 > [!WARNING]

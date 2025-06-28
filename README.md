@@ -34,7 +34,7 @@ First of all, when you start the application via terminal, the commands come. Al
 | Logs | Open log file. |
 | Password | Create password or read my password. |
 | Result | The port scaning and domain query result. |
-| MyIP | Gives its own external IP address. |
+| MyIP | Gives its own external public IP address. |
 
 ## Port Scan
 The port scan function checks the open/closed status of the ports you specify or all commonly used ports on the IP you enter and saves the open ones to a file. For this file, enter `7` in the command input input and enter `0` in the options.

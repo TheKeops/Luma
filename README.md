@@ -14,7 +14,7 @@ This application basic cyber security tools. Domain Query, IP Query, DNS Query, 
 > This application not hack tools. We are not responsible if used!
 
 > [!WARNING]
-> Run the folder that is appropriate for the operating system you want to download. If you have GNU/Linux, run the file in the "Linux" folder, if you have Windows, run the file in the "Windows" folder.
+> This application on Windows edition.
 
 # How to do use?
 First of all, when you start the application via terminal, the commands come. All the commands are given in the table below, all the features in the table are written under subheadings.

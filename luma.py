@@ -3,55 +3,107 @@
 
 * This app is under development. Please report any bugs or suggestions!
 
-Version : v1.2-demo
-License : MIT License
-Author : TheKeops
+* This version on Windows edition.
+
+Version   : v1.5-demo-win
+Language  : Python Programing Language
+License   : MIT License
+Developer : Keops Studios Software and Games
+Publisher : TheKeops (Keops Studios)
 
 """
 
-import os
+from os import makedirs, system
 import pyfiglet
 from colorama import init, Fore
-import requests
-import pyperclip
-import datetime
-import random
-import string
+from requests import get
+from pyperclip import copy
+from datetime import datetime
+from random import choices
+from string import ascii_letters, digits
 import socket
-import dns.resolver
-import whois
+from dns.resolver import NoAnswer, resolve, NXDOMAIN
+from whois import whois
+from time import sleep
+
+init(autoreset=True)
 
 try:
-    os.makedirs("LUMA-APP/data", exist_ok=True)
-    os.makedirs("LUMA-APP/log", exist_ok=True)
-    open("LUMA-APP/data/domain_query_result.txt", "x", encoding="utf-8")
-    open("LUMA-APP/data/my_password.txt", "x", encoding="utf-8")
-    open("LUMA-APP/data/dns_query_result.txt", "x", encoding="utf-8")
-    open("LUMA-APP/data/port_scanner_result.txt", "x", encoding="utf-8")
+    # App create folders.
+    makedirs("LUMA-APP/data", exist_ok=True)
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data' has been created!")
+    makedirs("LUMA-APP/log", exist_ok=True)
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/log' has been created!")
 
+    # Data Files
+    open("LUMA-APP/data/domain_query_result.txt", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data/domain_query_result.txt' has been created!")
+    sleep(0.1)
+    open("LUMA-APP/data/my_password.txt", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data/my_password.txt' has been created!")
+    sleep(0.1)
+    open("LUMA-APP/data/port_scanner_result.txt", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data/port_scanner_result.txt' has been created!")
+    sleep(0.1)
+    open("LUMA-APP/data/dns_query_result.txt", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data/dns_query_result.txt' has been created!")
+    sleep(0.1)
+    open("LUMA-APP/data/appdata.txt", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/data/appdata.txt' has been created!")
+    sleep(0.1)
+
+    # Log Files
     open("LUMA-APP/log/log.log", "x", encoding="utf-8")
+    print(f"{Fore.GREEN}[INFO] 'LUMA-APP/log/log.log' has been created!")
+    sleep(0.1)
+
+    # Data Write
+    with open("LUMA-APP/data/appdata.txt", "w", encoding="utf-8") as file:
+        file.writelines("False")
+
+    print(f"{Fore.GREEN}[INFO] : The necessary file creation process was successful!")
+
 except:
     pass
+
+with open("LUMA-APP/data/appdata.txt", "r", encoding="utf-8") as check_lib:
+    if check_lib.read().strip() == "False":
+        try:
+            system("python -m pip --version")
+            system("pip install pyfiglet")
+            system("pip install colorama")
+            system("pip install requests")
+            system("pip install pyperclip")
+            system("pip install dnspython")
+            system("pip install python-whois")
+            print(f"{Fore.GREEN}[INFO] : Library check completed successfully!")
+
+            with open("LUMA-APP/data/appdata.txt", "w", encoding="utf-8") as file:
+                file.writelines("True")
+        except:
+            pass
+    else:
+        pass
 
 def save_log(title=None, content=None, type=None):
 
     if type.strip().upper() == "LOG":
         with open("LUMA-APP/log/log.log", "a", encoding="utf-8") as f:
-            f.writelines(f"- LUMA INFO [{datetime.datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
+            f.writelines(f"- LUMA INFO [{datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
 
     elif type.strip().upper() == "WARNING":
         with open("LUMA-APP/log/log.log", "a", encoding="utf-8") as f:
-            f.writelines(f"- LUMA WARNING [{datetime.datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
+            f.writelines(f"- LUMA WARNING [{datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
 
     elif type.strip().upper() == "ERROR":
         with open("LUMA-APP/log/log.log", "a", encoding="utf-8") as f:
-            f.writelines(f"- LUMA ERROR [{datetime.datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
+            f.writelines(f"- LUMA ERROR [{datetime.now().strftime('%H:%M:%S')}] : TITLE : {title} - COMMENT : {content}\n")
 
 def create_password(password_name,long=20):
     uzunluk = long
-    karakterler = string.ascii_letters + string.digits + "!.-_"
+    karakterler = ascii_letters + digits + "!@#$()"
 
-    rastgele_string = ''.join(random.choices(karakterler, k=uzunluk))
+    rastgele_string = ''.join(choices(karakterler, k=uzunluk))
 
     if str(password_name).strip() == "":
         print(f"{Fore.RED}Do not leave the introduction section blank!")
@@ -68,7 +120,7 @@ def port_scan(ip, TargetPort):
     print(write_title_port)
     try:
         port_f = open("LUMA-APP/data/port_scanner_result.txt","a")
-        port_f.writelines(f"PORT SCANING [{datetime.datetime.now()}] - IP : {ip} - PORT : {TargetPort}\n")
+        port_f.writelines(f"PORT SCANING [{datetime.now()}] - IP : {ip} - PORT : {TargetPort}\n")
 
         for port in TargetPort:
             try:
@@ -102,7 +154,7 @@ def domain_query(domain):
     try:
         domain_query_f = open("LUMA-APP/data/domain_query_result.txt", "a")
 
-        w = whois.whois(domain)
+        w = whois(domain)
 
         print("")
         print(f"         {Fore.CYAN}[RESULT]")
@@ -125,13 +177,13 @@ Mail              : {w.emails}
 
 """
 
-        domain_query_f.writelines(f"DOMAIN QUERY RESULT [{datetime.datetime.now()}] - DOMAIN : {domain}")
+        domain_query_f.writelines(f"DOMAIN QUERY RESULT [{datetime.now()}] - DOMAIN : {domain}")
         domain_query_f.writelines(f"{domain_query_writer}")
 
-        save_log("DOMAIN QUERY",f"{domain} Domain Query.",type="log")
+        save_log("DOMAİN QUERY",f"{domain} Domain Query.",type="log")
     except Exception as e:
         print(f"{Fore.RED}Query failed :", e)
-        save_log("DOMAIN QUERY",f"Query failed : {e}",type="error")
+        save_log("DOMAİN QUERY",f"Query failed : {e}",type="error")
 
 def ip_query(target_domain):
     try:
@@ -149,20 +201,20 @@ def dns_query():
 
         dns_result_writer = open("LUMA-APP/data/dns_query_result.txt", "a", encoding="utf-8")
 
-        dns_result_writer.writelines(f"DNS QUERY [{datetime.datetime.now()}] - DOMAIN : {domain}\n\n")
+        dns_result_writer.writelines(f"DNS QUERY [{datetime.now()}] - DOMAIN : {domain}\n\n")
         kayit_turleri = ['A', 'AAAA', 'MX', 'NS', 'CNAME', 'TXT']
         print(f"{domain} DNS query started for...\n")
 
         for kayit in kayit_turleri:
             try:
-                cevap = dns.resolver.resolve(domain, kayit)
+                cevap = resolve(domain, kayit)
                 print(f"{kayit} Records:")
                 dns_result_writer.writelines(f"{kayit} Records:\n")
                 for rdata in cevap:
                     print(f" | {rdata.to_text()}")
                     dns_result_writer.writelines(f" | {rdata.to_text()}\n")
                     
-            except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
+            except (NoAnswer, NXDOMAIN):
                 print(f"{Fore.RED}{kayit} No record found.")
                 dns_result_writer.writelines(f"{kayit} No record found.\n")
                  
@@ -209,7 +261,7 @@ def main():
 
         user = input("Give a Command : ").lower().strip()
 
-        if user == "0":
+        if user == "0" or user == "port scan":
                 print("")
                 ask_port_input = input("(0-MyInputs, 1-All) : ").strip()
 
@@ -228,22 +280,29 @@ def main():
                     except Exception as e:
                         print(f"{Fore.RED}An error has occurred!")
                         save_log("PORT SCANNER",f"{e}",type="error")
+
+                elif ask_port_input == "exit":
+                    pass
+
                 else:
                     try:
                         print("")
                         ip_Adress = input("Ip Adress : ").strip()
-                        
-                        port_numbers = [21, 22, 23, 25, 53, 80, 110, 139, 143, 443, 445, 3306, 3389, 8080]
 
-                        port_scan(ip_Adress, port_numbers)
+                        if ip_Adress == "exit":
+                            pass
+                        else:
+                            port_numbers = [21, 22, 23, 25, 53, 80, 110, 139, 143, 443, 445, 3306, 3389, 8080]
+
+                            port_scan(ip_Adress, port_numbers)
 
                     except Exception as e:
                         print(f"{Fore.RED}An error has occurred!")
                         save_log("PORT SCANNER",f"{e}",type="error")
 
-        elif user == "1":
+        elif user == "1" or user == "query":
             print("")
-            os.system("cls")
+            system("cls")
 
             ask_query = input("(1-Domain Query, 2-IP Query, 3-DNS Query) : ").strip()
 
@@ -251,52 +310,54 @@ def main():
                 domain_input = input("Enter a Domain : ").strip()
                 domain_query(domain_input)
                 input()
-                os.system("cls")
+                system("cls")
             elif ask_query == "2":
                 domain_input = input("Enter a Domain (IP) : ").strip()
                 ip_query(domain_input)
                 input()
-                os.system("cls")
+                system("cls")
             elif ask_query == "3":
                 dns_query()
+            
+            elif ask_query == "exit":
+                pass
+
             else:
                 print(f"{Fore.RED} No action found! (1,2,3)")
                 save_log("QUERY",f"No action found!",type="error")
 
-        elif user == "2":
-            os.system("cls")
-        elif user == "3":
-            os.system("cls")
+        elif user == "2" or user == "clear":
+            system("cls")
+        elif user == "3" or user == "about":
+            system("cls")
             print("")
             print(f"{Fore.CYAN}[LUMA ABOUT]")
             print("---------------------------")
-            print("- Luma application is an open source simple cybersecurity application. The application currently runs on Windows machines and is under development. This version is a terminal version, versions with interfaces may be released in future versions.")
-            print("VERSION   : v1.2-demo")
-            print("LICENSE   : MIT LICENSE")
-            print("DEVELOPER : TheKeops")
+            print("- Luma application is an open source simple cybersecurity application. The application currently runs on Windows machines and is under development. This version is for developers and the commands are divided into libraries.")
+            print("- v1.5-demo-win")
             input()
-        elif user == "4":
+        elif user == "4" or user == "exit":
             print("")
             ask = input("Are you sure you want to leave? (Y/N) : ").strip().upper()
 
             if ask == "Y":
                 exit()
-        elif user == "5":
+        elif user == "5" or user == "logs":
             with open("LUMA-APP/log/log.log","r") as f:
                 logs = f.readlines()
                 print(f"\n      {Fore.CYAN}[LUMA LOGS]\n------------------------------------------------------")
             for i in logs:
                 print(f"{i}")
             input()
-        elif user == "6":
+        elif user == "6" or user == "password":
             print("")
-            choose_pas = input("(0-Create Password, 1-Open Password) : ").strip()
+            choose_pas = input("(1-Create Password, 2-Open Password) : ").strip()
 
-            if choose_pas == "0":
+            if choose_pas == "1":
                 print("")
                 password_name = input("Password Name : ").strip()
                 create_password(password_name=password_name)
-                save_log("CREATE PASSWORD",f"Password created successfully! [main/log/my_password.txt]",type="log")
+                save_log("CREATE PASSWORD",f"Password created successfully! [LUMA-APP/data/my_password.txt]",type="log")
                 print(f"{Fore.GREEN}Password created successfully! [LUMA-APP/data/my_password.txt]")
             else:
                 with open("LUMA-APP/data/my_password.txt", "r") as f:
@@ -309,39 +370,31 @@ def main():
                     print(f"- {values}\n")
                 input()
 
-        elif user == "7":
+        elif user == "7" or user == "result":
             print("")
-            ask_result = input("(0-Port Scanner, 1-Domain Query, 2-DNS Query) : ").strip()
+            ask_result = input("(0-Port Scanner, 1-Domain Query) : ").strip()
 
             if ask_result == "0":
-                os.system("cls")
+                system("cls")
                 with open("LUMA-APP/data/port_scanner_result.txt", "r") as f:
                     file = f.read()
 
                 print(file)
                 input()
-            elif ask_result == "1":
-                os.system("cls")
+            else:
+                system("cls")
                 with open("LUMA-APP/data/domain_query_result.txt", "r") as f:
                     file = f.read()
+
                 print(file)
-                input()
-            elif ask_result == "2":
-                os.system("cls")
-                with open("LUMA-APP/data/dns_query_result.txt", "r", encoding="utf-8") as f:
-                    file = f.read()
-                print(file)
-                input()
-            else:
-                print(f"{Fore.RED}Please enter the given operations!")
                 input()
 
-        elif user == "8":
-            you_ip_text = requests.get("https://api64.ipify.org/").text
+        elif user == "8" or user == "myip":
+            you_ip_text = get("https://api64.ipify.org/").text
 
             print("")
             print(f"You IP Adress : {you_ip_text} (Copied)")
-            pyperclip.copy(you_ip_text)
+            copy(you_ip_text)
 
         else:
             if user == "":
@@ -350,7 +403,6 @@ def main():
             else:
                 print(f"{Fore.RED}'{user}' not defined!")
                 print("")
-# Main 
+
 if __name__ == "__main__":
     main()
-    
